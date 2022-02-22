@@ -61,3 +61,17 @@ cmd>npm install mockjs --save-dev
 cmd>npm install swiper@5 --save
 
 
+git安装步骤，https://blog.csdn.net/m0_37450089/article/details/120939158
+	除了自定义安装位置（选好安装位置，会自动创建Git安装目录），基本都是next，新功能就不要勾选了；
+	配置环境变量：
+		D:\developTools\Git\bin
+		D:\developTools\Git\mingw64\libexec		有32位的也配置了一下
+	版本号检查：cmd>git --version
+		当前使用版本号：2.35.1
+	可以先在github网站创建仓库（建议与想要使用的项目名称同名），拉取到本地编码后提交；
+	也可以分别独立进行两边的步骤， 创建github上的项目仓库和在本地创建项目并编码，然后再提交至远程仓库。
+	新版git:
+		cmd>git remote add origin https://github.com/kgo748/app.git 设置提交地址
+		不再是设置提交地址的时候确认密码，而是首次提交的时候，且不再是弹出界面，而是跳转到浏览器确认github的密码；
+
+
