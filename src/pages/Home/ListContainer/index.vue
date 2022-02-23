@@ -2,33 +2,23 @@
   <div class="list-container">
     <div class="sortList clearfix">
       <div class="center">
-        <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
+        <!--banner轮播 通常写法-->
+        <!-- <div class="swiper-container" id="mySwiper" ref="mySwiper">
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
               v-for="(carousel, index) in bannerList"
-              :key="index"
+              :key="carousel.id"
             >
               <img :src="carousel.imgUrl" />
             </div>
-            <!-- <div class="swiper-slide">
-              <img src="./images/banner2.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner3.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner4.jpg" />
-            </div> -->
           </div>
-          <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
-
-          <!-- 如果需要导航按钮 -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
-        </div>
+        </div> -->
+        <!-- 使用轮播图组件 -->
+        <Carousel :list="bannerList" />
       </div>
       <div class="right">
         <div class="news">
@@ -106,41 +96,62 @@
 /* 列表 */
 import { mapState } from "vuex";
 // 引入swiper JS对象 ，css样式在入口文件引入；
-import Swiper from "swiper";
+// import Swiper from "swiper";
 
 export default {
   name: "ListContainer",
   mounted() {
-    //mounted:组件挂载完毕，正常说组件结构（DOM）已经全有了
-    //为什么swiper实例在mounted当中直接书写不可以：因为结构还没有完整
+    // mounted: 组件挂载完毕，正常说（涉及到ajax请求，动态渲染结构时另说）组件结构（DOM）已经全有了
+    // 为什么swiper实例在mounted当中直接书写不可以：因为结构还没有完整
+
     // 派发action：通过Vuex发起ajax请求，将交数据存储在仓库当中
     this.$store.dispatch("getBannerList");
+
     // 在new Swiper实例之前，页面中的结构必须要有，【现在在mounted里new实例却发现不行】
     // 因为结构里有vue指令，使用了异步请求的数据，请求数据需要时间，那使用数据的页面结构肯定还未完全渲染；
     // 因为dispatch当中涉及到异步语句，导致v-for便利的时候结构还没有完全渲染，因此不行；
-    // 也可通过定时器解决，不推荐
-    this.$nextTick(() => {
-      var mySwiper = new Swiper(document.querySelector(".swiper-container"), {
-        loop: true,
-        // 如果需要分页器
-        pagination: {
-          el: ".swiper-pagination",
-          //点击小球的时候也切换图片
-          clickable: true,
-        },
-        // 如果需要前进后退按钮
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    });
+    // 也可通过定时器包裹解决，不推荐
   },
   computed: {
     ...mapState({
       bannerList: (state) => state.home.bannerList,
     }),
   },
+  // 轮播图使用组件后注释掉
+  /* watch: {
+    // 监听bannerList数据的变化，因为这条数据发生过变化---由一个开两个数组变为数组里面有四个元素
+    bannerList: {
+      // 通过watch监听bannseList属性的属性值的变化
+      // 如果执行handler方法，代表组件实例身上这个属性的属性值已经有了变化【数组：是个元素】
+      // 当前这个函数执行，只能保证bannerList数据已经有了，不能保证v-for已经执行结束了，因为遍历也需要时间的
+      // v-for执行完毕，才有DOM结构，现在在watch当中不能能保证有swiper的DOM结构
+      // 
+      handler(newValue, oldValue) {
+        // console.log(newValue, oldValue);
+        // nextTick：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+        // P36；
+        this.$nextTick(() => {
+          // 当执行这个回调的时候，可以保证服务器数据已经回来了，v-fot循环执行完毕【此时轮播图需要的DOM结构一定也存在了】
+          // 不再建议用原生方式获取DOM结构了 document.querySelector(".swiper-container")
+          var mySwiper = new Swiper(this.$refs.mySwiper, {
+            loop: true,
+            // 如果需要分页器
+            pagination: {
+              el: ".swiper-pagination",
+              //点击小球的时候也切换图片
+              clickable: true,
+            },
+            // 如果需要前进后退按钮
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        });
+        
+      },
+    },
+  }, */
 };
 </script>
 <style lang="less" scoped>

@@ -7,10 +7,12 @@ import store from '@/store'
 // 引入mockServer.js，mock数据
 import '@/mock/mockServer.js'
 
-// 三级联动的组件，注册为全局组件
+// 三级联动的组件等功能通用的组件，可以注册为全局组件
 import typeNav from "@/components/TypeNav";
+import Carousel from "@/components/Carousel";
 // 参数1：全局组件的名字，参数2：那个组件
 Vue.component('TypeNav', typeNav)
+Vue.component('Carousel', Carousel)
 // 在入口文件里引入swiper样式；所有组件都可以使用
 import "swiper/css/swiper.css";
 
