@@ -129,7 +129,7 @@ export default {
     changeIndex: throttle(function (index) {
       this.currentIndex = index;
     }, 50),
-    // 进行路由跳转的方法；编程式导航+事件委派+自定义属性
+    // 点击a标签；进行路由跳转的方法；编程式导航+事件委派+自定义属性
     goSearch(event) {
       // 做好的解决方案：编程式导航+事件委派
       // 利用事件委派存在的一些问题：1.点击的不一定是a标签（点击其它地方也会触发父节点的时间按），2.如何获取参数【1、2、3级分类的名字】

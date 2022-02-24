@@ -52,7 +52,7 @@ cmd>npm install --save axios
 
 lodash: 不用额外安装；
 
-this.$route用来判断params、query参数等；
+this.$route用来判断、获取路径中的params、query参数等；
 this.$router用来push|replace进行编程式路由跳转等；
 
 mock模拟数据：
@@ -73,5 +73,16 @@ git安装步骤，https://blog.csdn.net/m0_37450089/article/details/120939158
 	新版git:
 		cmd>git remote add origin https://github.com/kgo748/app.git 设置提交地址
 		不再是设置提交地址的时候确认密码，而是首次提交的时候，且不再是弹出界面，而是跳转到浏览器确认github的密码；
+
+	使用 git add . 命令报 The file will have its original line endings in your working directory
+		方法1：删除缓存
+			git rm -r -f --cached .
+		方法2：设置禁用换行
+			git config --global core.autocrlf false
+			原因是路径中存在 / 的符号转义问题，false就是不转换符号，默认是true，相当于把路径的 / 符号进行转义，这样添加的时候就有问题
+
+vuex:
+	mapGetters里面的写法：传递的数组，因为getters计算是没有划分模块【home,search】
+	
 
 

@@ -1,4 +1,4 @@
-/* 对于axios进行二次封装 */
+/* 对于axios进行二次封装；向真实的服务器发送请求 */
 import axios from "axios"; 
 // 引入进度条；start：进度条开始，done：进度条结束
 import nprogress from 'nprogress';

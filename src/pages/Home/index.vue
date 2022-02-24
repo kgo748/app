@@ -7,7 +7,7 @@
     <Rank />
     <Like />
     <!-- 循环组件标签，并向子组件传递数据 -->
-    <Floor v-for="(floor, index) in floorList" :key="floor.id" :list="floor" />
+    <Floor v-for="floor in floorList" :key="floor.id" :list="floor" />
     <Brand />
   </div>
 </template>

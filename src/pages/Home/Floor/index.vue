@@ -20,7 +20,7 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li v-for="(nav, index) in list.navList" :key="nav.id">
+                <li v-for="nav in list.navList" :key="nav.id">
                   {{ nav.text }}
                 </li>
               </ul>

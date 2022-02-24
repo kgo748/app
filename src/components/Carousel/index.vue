@@ -28,9 +28,9 @@ export default {
   watch: {
     list: {
       immediate: true,
-      handler(newValue, oldValue) {
+      handler() {
         this.$nextTick(() => {
-          var mySwiper = new Swiper(this.$refs.mySwiper, {
+          new Swiper(this.$refs.mySwiper, {
             loop: true,
             // 如果需要分页器
             pagination: {

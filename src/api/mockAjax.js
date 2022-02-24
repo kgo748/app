@@ -11,7 +11,7 @@ import "nprogress/nprogress.css";
 const request = axios.create({
     // 配置对象
     // 基础路径，发请求的时候，路径当中会出现api
-    baseURL: '/mock',
+    baseURL: '/mock', // 设置为mock模拟数据路径
     // 代表请求超时的时间为5s
     timeout: 5000
 });
