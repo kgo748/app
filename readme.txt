@@ -71,8 +71,14 @@ git安装步骤，https://blog.csdn.net/m0_37450089/article/details/120939158
 	可以先在github网站创建仓库（建议与想要使用的项目名称同名），拉取到本地编码后提交；
 	也可以分别独立进行两边的步骤， 创建github上的项目仓库和在本地创建项目并编码，然后再提交至远程仓库。
 	新版git:
-		cmd>git remote add origin https://github.com/kgo748/app.git 设置提交地址
-		不再是设置提交地址的时候确认密码，而是首次提交的时候，且不再是弹出界面，而是跳转到浏览器确认github的密码；
+		首次安装完git软件后，如果执行 --global user.email "github账号" 等命令设置了账号和密码后，后面短期内就不会再弹出界面让输入账号密码了；
+		cmd>git init  初始化一个git项目，并生成 .git 文件夹，有些项目在创建的时候如果已经有这个文件夹了就不必执行此条命令；如果后续有什么问题可删掉 .git文件夹 再执行命令；
+		.gitignore 没有就自行在根目录下创建；
+		cmd>git add .  添加到本地缓存；
+		cmd>git commit -m "添加注释"
+		cmd>git remote add origin https://github.com/kgo748/app.git 设置提交地址；
+		cmd>git push origin master  提交到主分支，
+			不再是设置提交地址的时候确认密码，而是首次提交的时候，且不再是弹出界面，而是跳转到浏览器确认github的密码；
 
 	使用 git add . 命令报 The file will have its original line endings in your working directory
 		方法1：删除缓存
